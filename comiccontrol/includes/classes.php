@@ -44,6 +44,12 @@ class CC_Site{
 
 	public $comments; //comment provider
 
+	public $tableprefix;
+
+	public $commentname;
+
+	public $language;
+
 	
 
 	public function __construct(){
@@ -437,6 +443,8 @@ class CC_Page{
 	public $slugarr = ""; //array of slugs parsed from URL
 
 	public $description = ""; //meta description for page
+
+	public $language;
 
 	
 
@@ -1087,6 +1095,8 @@ class CC_Comic extends CC_Module{
 	public $type = "comic"; //module type
 
 	public $options = array(); //comic options array
+
+	public $slug;
 
 	
 
@@ -3492,3 +3502,4 @@ class CC_Blog extends CC_Module{
 
 
 ?>
+
