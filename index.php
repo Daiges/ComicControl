@@ -60,12 +60,14 @@ if($ccuser->authlevel > 0){
 	switch($ccpage->moduletype){
 		case "comic":
 			$comicinfo = $ccpage->module->getComic();
-			if($comicinfo['publishtime'] > time()){
-				$previewbar .= $adminlang['PREVIEW'] . " - ";
+			if (!empty($comicinfo)) {
+				if($comicinfo['publishtime'] > time()){
+					$previewbar .= $adminlang['PREVIEW'] . " - ";
+				}
+				$previewbar .= $comicinfo['title'] .' - <a href="' . $ccurl . 'modules/' . $ccpage->module->slug . '/add-post">' . $adminlang['Add'] . '</a> | <a href="' . $ccurl . 'modules/' . $ccpage->module->slug . '/edit-post/' . $comicinfo['slug'] . '">' . $adminlang['Edit'] . '</a> | ';
+				$previewbar .= '<a href="' . $ccurl . 'modules/' . $ccpage->module->slug . '">' . str_replace('%s',$ccpage->title,$adminlang['Return to %s']) . '</a>';
+				$previewbar .= '</div></div>';
 			}
-			$previewbar .= $comicinfo['title'] .' - <a href="' . $ccurl . 'modules/' . $ccpage->module->slug . '/add-post">' . $adminlang['Add'] . '</a> | <a href="' . $ccurl . 'modules/' . $ccpage->module->slug . '/edit-post/' . $comicinfo['slug'] . '">' . $adminlang['Edit'] . '</a> | ';
-			$previewbar .= '<a href="' . $ccurl . 'modules/' . $ccpage->module->slug . '">' . str_replace('%s',$ccpage->title,$adminlang['Return to %s']) . '</a>';
-			$previewbar .= '</div></div>';
 			break;
 		case "blog":
 			$bloginfo = $ccpage->module->getPost(getSlug(1));
